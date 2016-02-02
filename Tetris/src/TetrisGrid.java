@@ -41,7 +41,7 @@ public class TetrisGrid extends BlockGrid
 
 	/**
 	* Sets the current working block.
-	* @returns True if the block is set, false if the block will not fit.
+	* @return True if the block is set, false if the block will not fit.
 	*/
 	public boolean setWorkingBlock(TetrisBlock block)
 	{
