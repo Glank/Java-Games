@@ -9,6 +9,9 @@ public class TrafficPattern
 	// B == BLUE
 	// L == BLACK
 	// M == MAGENTA
+        // Y == YELLOW
+        // C == CYAN
+        // G == GREEN
 
 	private int speed;
 	private String pattern;
@@ -47,6 +50,15 @@ public class TrafficPattern
 				case 'M':
 					cars.add(new Car(left?next*Car.WIDTH:(int)bounds.getWidth()-next*Car.WIDTH, y, speed, Color.MAGENTA));
 					break;
+                                case 'Y':
+					cars.add(new Car(left?next*Car.WIDTH:(int)bounds.getWidth()-next*Car.WIDTH, y, speed, Color.YELLOW));
+					break;
+                                case 'C':
+					cars.add(new Car(left?next*Car.WIDTH:(int)bounds.getWidth()-next*Car.WIDTH, y, speed, Color.CYAN));
+					break;
+                                case 'G':
+					cars.add(new Car(left?next*Car.WIDTH:(int)bounds.getWidth()-next*Car.WIDTH, y, speed, Color.GREEN));
+					break;
 				default:
 					cars.add(new Car(left?next*Car.WIDTH:(int)bounds.getWidth()-next*Car.WIDTH, y, speed, null));
 			}
@@ -71,6 +83,15 @@ public class TrafficPattern
 				break;
 			case 'M':
 				cars.add(new Car(left?(int)bounds.getWidth():0, y, speed, Color.MAGENTA));
+				break;
+                        case 'Y':
+				cars.add(new Car(left?(int)bounds.getWidth():0, y, speed, Color.YELLOW));
+				break;
+                        case 'C':
+				cars.add(new Car(left?(int)bounds.getWidth():0, y, speed, Color.CYAN));
+				break;
+                        case 'G':
+				cars.add(new Car(left?(int)bounds.getWidth():0, y, speed, Color.GREEN));
 				break;
 			default:
 				cars.add(new Car(left?(int)bounds.getWidth():0, y, speed, null));

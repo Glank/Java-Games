@@ -1,6 +1,6 @@
 public class FroggerLevel implements java.io.Serializable
 {
-	public static final FroggerLevel TEST = new FroggerLevel(new int[]{1,1,1}, new String[]{"RRR  LLL  BB  MM   ","RRR  LLL  BB  MM   ","RRR  LLL  BB  MM   "});
+	//public static final FroggerLevel TEST = new FroggerLevel(new int[]{1,1,1}, new String[]{"RRR  LLL  BB  MM   ","RRR  LLL  BB  MM   ","RRR  LLL  BB  MM   "});
 
 	private int[] speeds;
 	private String[] patterns;
