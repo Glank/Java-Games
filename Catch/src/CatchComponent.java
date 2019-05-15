@@ -8,11 +8,41 @@ public class CatchComponent extends JComponent implements KeyListener, Runnable
 	private boolean leftPressed = false;
 	private boolean rightPressed = false;
 
+	//Getter method for leftPressed
+	public boolean isLeftPressed() {
+		return leftPressed;
+	}
+
+	//Setter method for leftPressed
+	public void setLeftPressed(boolean leftPressed) {
+		this.leftPressed = leftPressed;
+	}
+
+	//Getter method for rightPressed
+	public boolean isRightPressed() {
+		return rightPressed;
+	}
+
+	//Setter method for rightPressed
+	public void setRightPressed(boolean rightPressed) {
+		this.rightPressed = rightPressed;
+	}
+
+	//Getter method for engine
+	public CatchEngine getEngine() {
+		return engine;
+	}
+
+	//Setter method for engine
+	public void setEngine(CatchEngine engine) {
+		this.engine = engine;
+	}
+	
 	public CatchComponent()
 	{
 		super();
-		engine = new CatchEngine();
- 		setPreferredSize(new Dimension(engine.WIDTH, engine.HEIGHT));
+		setEngine(new CatchEngine());
+ 		setPreferredSize(new Dimension(getEngine().WIDTH, getEngine().HEIGHT));
 
  		addKeyListener(this);
  		Thread run = new Thread(this);
@@ -43,9 +73,9 @@ public class CatchComponent extends JComponent implements KeyListener, Runnable
 
 	public void updateState()
 	{
-		if(leftPressed)
+		if(isLeftPressed())
 			engine.moveLeft();
-		if(rightPressed)
+		if(isRightPressed())
 			engine.moveRight();
 		engine.update();
 	}
@@ -53,20 +83,21 @@ public class CatchComponent extends JComponent implements KeyListener, Runnable
 	public void keyPressed(KeyEvent ke)
 	{
 		if(ke.getKeyCode() == KeyEvent.VK_LEFT)
-			leftPressed = true;
+			setLeftPressed(true);
 		else if(ke.getKeyCode() == KeyEvent.VK_RIGHT)
-			rightPressed = true;
+			setRightPressed(true);
 	}
 
 	public void keyReleased(KeyEvent ke)
 	{
 		if(ke.getKeyCode() == KeyEvent.VK_LEFT)
-			leftPressed = false;
+			setLeftPressed(false);
 		else if(ke.getKeyCode() == KeyEvent.VK_RIGHT)
-			rightPressed = false;
+			setRightPressed(false);
 	}
 
-	public void keyTyped(KeyEvent ke)
-	{
+	@Override
+	public void keyTyped(KeyEvent e) {
+		
 	}
 }

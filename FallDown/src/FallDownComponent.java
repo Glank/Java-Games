@@ -7,6 +7,22 @@ public class FallDownComponent extends JComponent implements KeyListener, Runnab
 	private FallDownEngine engine;
 	private boolean leftPressed, rightPressed;
 
+	protected boolean isLeftPressed() {
+		return leftPressed;
+	}
+
+	protected void setLeftPressed(boolean leftPressed) {
+		this.leftPressed = leftPressed;
+	}
+
+	protected boolean isRightPressed() {
+		return rightPressed;
+	}
+
+	protected void setRightPressed(boolean rightPressed) {
+		this.rightPressed = rightPressed;
+	}
+
 	public FallDownComponent()
 	{
 		super();
@@ -45,9 +61,9 @@ public class FallDownComponent extends JComponent implements KeyListener, Runnab
 
 	public void update()
 	{
-		if(leftPressed)
+		if(isLeftPressed())
 			engine.moveLeft();
-		if(rightPressed)
+		if(isRightPressed())
 			engine.moveRight();
 		engine.update();
 	}
@@ -55,17 +71,17 @@ public class FallDownComponent extends JComponent implements KeyListener, Runnab
 	public void keyPressed(KeyEvent ke)
 	{
 		if(ke.getKeyCode() == KeyEvent.VK_LEFT)
-			leftPressed = true;
+			setLeftPressed(true);
 		else if(ke.getKeyCode() == KeyEvent.VK_RIGHT)
-			rightPressed = true;
+			setRightPressed(true);
 	}
 
 	public void keyReleased(KeyEvent ke)
 	{
 		if(ke.getKeyCode() == KeyEvent.VK_LEFT)
-			leftPressed = false;
+			setLeftPressed(false);
 		else if(ke.getKeyCode() == KeyEvent.VK_RIGHT)
-			rightPressed = false;
+			setRightPressed(false);
 	}
 
 	public void keyTyped(KeyEvent ke)

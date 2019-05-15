@@ -5,6 +5,7 @@ public class PlayPong extends JFrame
 {
 	public PlayPong()
 	{
+		//checking git stuff
 		getContentPane().setLayout(new FlowLayout());
 		add(new PongComponent());
 		pack();

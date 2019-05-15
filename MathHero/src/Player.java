@@ -13,6 +13,19 @@ public class Player
 		health-=amount;
 	}
 
+	//added the getters
+	public int getHealth() {
+		return health;
+	}
+
+	public int getExp() {
+		return exp;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
 	public void heal()
 	{
 		health = maxHealth;
@@ -26,7 +39,8 @@ public class Player
 	public void addExp(int amount)
 	{
 		exp+=amount;
-		while(exp>expToNextLevel)
+		//fixed loop
+		while(exp>=expToNextLevel)
 			levelUp();
 	}
 

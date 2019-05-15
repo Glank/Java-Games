@@ -6,6 +6,9 @@ import java.awt.image.*;
 import javax.swing.*;
 import java.awt.event.*;
 
+/*
+ * Added 10 Getter Setter methods and implemented them
+ */
 public abstract class ListeningGameComponent extends GameComponent implements MouseListener, MouseMotionListener, KeyListener
 {
 	public boolean mousePressed1 = false, mousePressed2 = false, mousePressed3 = false;
@@ -74,11 +77,11 @@ public abstract class ListeningGameComponent extends GameComponent implements Mo
 	public void mousePressed(MouseEvent e)
 	{
 		if(e.getButton() == e.BUTTON1)
-			mousePressed1 = true;
+			setMousePressed1(true);
 		if(e.getButton() == e.BUTTON2)
-			mousePressed2 = true;
+			setMousePressed2(true);
 		if(e.getButton() == e.BUTTON3)
-			mousePressed3 = true;
+			setMousePressed3(true);
 	}
 
 
@@ -89,11 +92,11 @@ public abstract class ListeningGameComponent extends GameComponent implements Mo
 	public void mouseReleased(MouseEvent e)
 	{
 		if(e.getButton() == e.BUTTON1)
-			mousePressed1 = false;
+			setMousePressed1(false);
 		if(e.getButton() == e.BUTTON2)
-			mousePressed2 = false;
+			setMousePressed2(false); 
 		if(e.getButton() == e.BUTTON3)
-			mousePressed3 = false;
+			setMousePressed3(false);
 	}
 
 
@@ -104,13 +107,13 @@ public abstract class ListeningGameComponent extends GameComponent implements Mo
 	public void mouseDragged(MouseEvent e)
 	{
 		if(e.getButton() == e.BUTTON1)
-			mousePressed1 = !mousePressed1;
+			setMousePressed1(!isMousePressed1());
 		if(e.getButton() == e.BUTTON2)
-			mousePressed2 = !mousePressed2;
+			setMousePressed2(!isMousePressed2());
 		if(e.getButton() == e.BUTTON3)
-			mousePressed3 = !mousePressed3;
-		mouseX = e.getX();
-		mouseY = e.getY();
+			setMousePressed3(!isMousePressed3());
+		setMouseX(e.getX());
+		setMouseY(e.getY());
 	}
 
 
@@ -120,12 +123,12 @@ public abstract class ListeningGameComponent extends GameComponent implements Mo
 	 */
 	public void mouseMoved(MouseEvent e)
 	{
-		mousePressed1 = false;
-		mousePressed2 = false;
-		mousePressed3 = false;
+		setMousePressed1(false);
+		setMousePressed2(false);
+		setMousePressed3(false);
 
-		mouseX = e.getX();
-		mouseY = e.getY();
+		setMouseX(e.getX());
+		setMouseY(e.getY());
 	}
 
 
@@ -170,11 +173,11 @@ public abstract class ListeningGameComponent extends GameComponent implements Mo
 	public boolean isMousePressed(int b)
 	{
 		if(b == 1)
-			return mousePressed1;
+			return isMousePressed1();
 		else if(b == 2)
-			return mousePressed2;
+			return isMousePressed2();
 		else if(b == 3)
-			return mousePressed3;
+			return isMousePressed3();
 
 		return false;
 	}
@@ -185,12 +188,12 @@ public abstract class ListeningGameComponent extends GameComponent implements Mo
 	 */
 	public boolean isMousePressed()
 	{
-		if(mousePressed1)
-			return mousePressed1;
-		else if(mousePressed2)
-			return mousePressed2;
-		else if(mousePressed3)
-			return mousePressed3;
+		if(isMousePressed1())
+			return isMousePressed1();
+		else if(isMousePressed2())
+			return isMousePressed2();
+		else if(isMousePressed3())
+			return isMousePressed3();
 
 		return false;
 	}
@@ -222,4 +225,55 @@ public abstract class ListeningGameComponent extends GameComponent implements Mo
 	{
 		keysPressed = new ArrayList();
 	}
+	
+	//Getter method for mousePressed1
+	public boolean isMousePressed1() {
+		return mousePressed1;
+	}
+
+	//Setter method for mousePressed1
+	public void setMousePressed1(boolean mousePressed1) {
+		this.mousePressed1 = mousePressed1;
+	}
+
+	//Getter method for mousePressed
+	public boolean isMousePressed2() {
+		return mousePressed2;
+	}
+
+	//Setter method for mousePressed2
+	public void setMousePressed2(boolean mousePressed2) {
+		this.mousePressed2 = mousePressed2;
+	}
+
+	//Getter method for mousePressed3
+	public boolean isMousePressed3() {
+		return mousePressed3;
+	}
+
+	//Setter method for mousePressed3
+	public void setMousePressed3(boolean mousePressed3) {
+		this.mousePressed3 = mousePressed3;
+	}
+
+	//Getter method for mouseX
+	public int getMouseX() {
+		return mouseX;
+	}
+
+	//Setter method for MouseX
+	public void setMouseX(int mouseX) {
+		this.mouseX = mouseX;
+	}
+
+	//Getter method for MouseY
+	public int getMouseY() {
+		return mouseY;
+	}
+
+	//Setter methof for mouseY
+	public void setMouseY(int mouseY) {
+		this.mouseY = mouseY;
+	}
+
 }

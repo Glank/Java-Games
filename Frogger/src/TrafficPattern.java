@@ -31,6 +31,26 @@ public class TrafficPattern
 		initCars();
 	}
 
+	public int getNext() {
+		return this.next;
+	}
+
+	public int getSpeed() {
+		return this.speed;
+	}
+
+	public String getPattern() {
+		return this.pattern;
+	}
+
+	public boolean getBool() {
+		return this.left;
+	}
+
+	public Rectangle getRect() {
+		return this.bounds;
+	}
+
 	public void initCars()
 	{
 		cars = new Vector<Car>();

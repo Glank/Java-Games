@@ -57,6 +57,13 @@ public class Comet extends Planet
 		yV+= SPEED*d.y;
 	}
 
+	public double getxVel() {
+		return xV;
+	}
+
+	public double getyVel() {
+		return yV;
+	}
 
 	public void update()
 	{

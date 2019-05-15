@@ -23,6 +23,26 @@ public class PongEnvironment
 		rightComputer = r;
 	}
 
+	public boolean getLeftComputer() {
+		return this.leftComputer;
+	}
+
+	public boolean getRightComputer() {
+		return this.rightComputer;
+	}
+
+	public Ball getBall() {
+		return this.ball;
+	}
+
+	public int getPaddleWidth() {
+		return WIDTH;
+	}
+
+	public int getPaddleHeight() {
+		return HEIGHT;
+	}
+
 	public Paddle getLeft()
 	{
 		return left;
@@ -67,27 +87,56 @@ public class PongEnvironment
 		right = new Paddle(WIDTH-10, HEIGHT/2);
 	}
 
+	public void updateTop() {
+		if(ball.getLocation().getY() + Ball.RADIUS >= HEIGHT)
+			ball.bounceTop();
+	}
+
+	public void updateBottom() {
+
+		if(ball.getLocation().getY() - Ball.RADIUS <= 0)
+			ball.bounceTop();
+	}
+
+	public void updateLeftSide() {
+
+		if(left.contains(ball))
+			ball.bounceSide();
+	}
+
+	public void updateRightSide() {
+
+		if(right.contains(ball))
+			ball.bounceSide();
+	}
+
+	public void updateLeftScore() {
+
+		if(ball.getLocation().getX() > WIDTH)
+			leftScore();
+	}
+
+	public void updateRightScore() {
+
+		if(ball.getLocation().getX() < 0)
+			rightScore();
+	}
+
 	public void update()
 	{
 		ball.move();
-		if(ball.getLocation().getY() - Ball.RADIUS <= 0)
-			ball.bounceTop();
-		else if(ball.getLocation().getY() + Ball.RADIUS >= HEIGHT)
-			ball.bounceTop();
-		else if(left.contains(ball))
-			ball.bounceSide();
-		else if(right.contains(ball))
-			ball.bounceSide();
-		else if(ball.getLocation().getX() < 0)
-			rightScore();
-		else if(ball.getLocation().getX() > WIDTH)
-			leftScore();
+
+		updateBottom();
+		updateTop();
+		updateLeftSide();
+		updateRightSide();
+		updateLeftScore();
+		updateRightScore();
 
 		if(leftComputer)
 			left.moveTo((int)ball.getLocation().getY());
 		if(rightComputer)
 			right.moveTo((int)ball.getLocation().getY());
-
 	}
 
 	public void draw(Graphics g)

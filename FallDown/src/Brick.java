@@ -6,21 +6,41 @@ public class Brick
 	public static final int HEIGHT = 25;
 
 	private int x, y;
+	
+	//Getter method for Y
+	protected int getY() {
+		return y;
+	}
+
+	//Setter method for Y
+	protected void setY(int y) {
+		this.y = y;
+	}
+
+	//Getter method for X
+	protected int getX() {
+		return x;
+	}
+
+	//Setter method for X
+	protected void setX(int x) {
+		this.x = x;
+	}
 
 	public Brick(int x, int y)
 	{
-		this.x = x;
-		this.y = y;
+		setX(x);
+		setY(y);
 	}
 
 	public Brick move(int dx, int dy)
 	{
-		return new Brick(x+dx, y+dy);
+		return new Brick(getX()+dx, getY()+dy);
 	}
 
 	public Rectangle getBounds()
 	{
-		return new Rectangle(x-WIDTH/2, y-HEIGHT/2, WIDTH, HEIGHT);
+		return new Rectangle(getX()-WIDTH/2, getY()-HEIGHT/2, WIDTH, HEIGHT);
 	}
 
 	public boolean intersects(Ball b)
@@ -39,12 +59,12 @@ public class Brick
 
 	public Point getLocation()
 	{
-		return new Point(x,y);
+		return new Point(getX(),getY());
 	}
 
 	public void draw(Graphics g)
 	{
 		g.setColor(Color.RED);
-		g.fillRect(x-WIDTH/2, y-HEIGHT/2, WIDTH-1, HEIGHT-1);
+		g.fillRect(getX()-WIDTH/2, getY()-HEIGHT/2, WIDTH-1, HEIGHT-1);
 	}
 }

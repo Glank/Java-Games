@@ -14,6 +14,26 @@ public class Paddle
 		this.y = y;
 	}
 
+	public int getX() {
+		return this.x;
+	}
+
+	public int getY() {
+		return this.y;
+	}
+
+	public int getWidth() {
+		return WIDTH;
+	}
+
+	public int getHeight() {
+		return HEIGHT;
+	}
+
+	public int getMaxSpeed() {
+		return MAX_SPEED;
+	}
+
 	public void moveTo(int y)
 	{
 		if(Math.abs(this.y-y) > MAX_SPEED)
