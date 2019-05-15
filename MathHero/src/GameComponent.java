@@ -36,12 +36,8 @@ public abstract class GameComponent extends JPanel
 				while(true)
 				{
 					long time = System.currentTimeMillis();
-					if(background == null)
-					{
-						background = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-						background.getGraphics().setColor(Color.WHITE);
-						background.getGraphics().fillRect(0,0,WIDTH,HEIGHT);
-					}
+
+					backgroundCheck();
 
 					requestFocus();
 
@@ -68,6 +64,16 @@ public abstract class GameComponent extends JPanel
 		};
 		try{Thread.sleep(500);}catch(Exception ex){}
 		t.start();
+	}
+
+	//made to make method look cleaner
+	private void backgroundCheck() {
+		if(background == null)
+		{
+			background = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+			background.getGraphics().setColor(Color.WHITE);
+			background.getGraphics().fillRect(0,0,WIDTH,HEIGHT);
+		}
 	}
 
 	//get a blank image to draw onto
@@ -137,7 +143,7 @@ public abstract class GameComponent extends JPanel
 		}
 		else
 		{
-			System.out.println("ARGS! NO FULLSCRENE!");
+			System.out.println("ARGS! NO FULLSCREEN!");
 		}
 		return frame;
 	}

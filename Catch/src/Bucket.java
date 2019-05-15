@@ -8,10 +8,30 @@ public class Bucket
 
 	private int x,y;
 
+	//Getter method for X
+	public int getX() {
+		return x;
+	}
+
+	//Setter method for X
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	//Getter method for Y
+	public int getY() {
+		return y;
+	}
+
+	//Setter method for Y
+	public void setY(int y) {
+		this.y = y;
+	}
+
 	public Bucket(int x, int y)
 	{
-		this.x = x;
-		this.y = y;
+		setX(x);
+		setY(y);
 	}
 
 	public Bucket moveTo(int x, int y)
@@ -21,7 +41,7 @@ public class Bucket
 
 	public Bucket move(int dx, int dy)
 	{
-		return new Bucket(x+dx, y+dy);
+		return new Bucket(getX()+dx, getY()+dy);
 	}
 
 	public Bucket moveLeft()
@@ -36,12 +56,12 @@ public class Bucket
 
 	public Point getLocation()
 	{
-		return new Point(x,y);
+		return new Point(getX(),getY());
 	}
 
 	public Rectangle getBounds()
 	{
-		return new Rectangle(x-WIDTH/2, y-HEIGHT/2, WIDTH, HEIGHT);
+		return new Rectangle(getX()-WIDTH/2, getY()-HEIGHT/2, WIDTH, HEIGHT);
 	}
 
 	public boolean contains(Ball b)
@@ -52,6 +72,6 @@ public class Bucket
 	public void draw(Graphics g)
 	{
 		g.setColor(Color.BLACK);
-		g.fillRect(x-WIDTH/2, y-HEIGHT/2, WIDTH, HEIGHT);
+		g.fillRect(getX()-WIDTH/2, getY()-HEIGHT/2, WIDTH, HEIGHT);
 	}
 }

@@ -5,11 +5,44 @@ import java.awt.*;
 import java.awt.image.*;
 import javax.swing.*;
 
+/*
+ * Added 6 Getter/Setter methods and implemented them
+ */
 public abstract class GameComponent extends JPanel
 {
-	public static int WIDTH, HEIGHT;
+	private static int WIDTH, HEIGHT;
 	protected BufferedImage background = null;
-	public int delay = 25;
+	private int delay = 25;
+
+	//Getter method for delay
+	public int getDelay() {
+		return delay;
+	}
+
+	//Setter method for delay
+	public void setDelay(int delay) {
+		this.delay = delay;
+	}
+	
+	//Getter method for width
+	protected static int getWIDTH() {
+		return WIDTH;
+	}
+
+	//Setter method for width
+	public static void setWIDTH(int wIDTH) {
+		WIDTH = wIDTH;
+	}
+
+	//Getter method for height
+	public static int getHEIGHT() {
+		return HEIGHT;
+	}
+
+	//Setter method for height
+	public static void setHEIGHT(int hEIGHT) {
+		HEIGHT = hEIGHT;
+	}
 
 	/**
 	 * Constructs a GameComponent with a width of w, and a height of h.
@@ -21,10 +54,10 @@ public abstract class GameComponent extends JPanel
 	public GameComponent(int w, int h)
 	{
 		super();
-		WIDTH = w;
-		HEIGHT = h;
-		setSize(WIDTH, HEIGHT);
-		setPreferredSize(new Dimension(WIDTH, HEIGHT));
+		setWIDTH(w);
+		setHEIGHT(h);
+		setSize(getWIDTH(), getHEIGHT());
+		setPreferredSize(new Dimension(getWIDTH(), getHEIGHT()));
 		setBackground(Color.WHITE);
 		setVisible(true);
 		Thread t = new Thread()
@@ -36,9 +69,9 @@ public abstract class GameComponent extends JPanel
 					long time = System.currentTimeMillis();
 					if(background == null)
 					{
-						background = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+						background = new BufferedImage(getWIDTH(), getHEIGHT(), BufferedImage.TYPE_INT_RGB);
 						background.getGraphics().setColor(Color.WHITE);
-						background.getGraphics().fillRect(0,0,WIDTH,HEIGHT);
+						background.getGraphics().fillRect(0,0,getWIDTH(),getHEIGHT());
 					}
 
 					requestFocus();
@@ -55,8 +88,8 @@ public abstract class GameComponent extends JPanel
 					time = System.currentTimeMillis()-time;
 					try
 					{
-						if(delay-(int)time > 0)
-							sleep(delay-(int)time);
+						if(getDelay()-(int)time > 0)
+							sleep(getDelay()-(int)time);
 					}
 					catch(Exception ex)
 					{
@@ -73,10 +106,10 @@ public abstract class GameComponent extends JPanel
 	{
 		if(background == null)
 		{
-			background = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+			background = new BufferedImage(getWIDTH(), getHEIGHT(), BufferedImage.TYPE_INT_RGB);
 		}
 		background.getGraphics().setColor(Color.WHITE);
-		background.getGraphics().fillRect(0,0,WIDTH,HEIGHT);
+		background.getGraphics().fillRect(0,0,getWIDTH(),getHEIGHT());
 		return background.getGraphics();
 	}
 
@@ -124,7 +157,7 @@ public abstract class GameComponent extends JPanel
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(this, 0, 0);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(WIDTH, HEIGHT);
+		frame.setSize(getWIDTH(), getHEIGHT());
 		frame.setResizable(false);
 		frame.setUndecorated(true);
 		frame.setVisible(true);

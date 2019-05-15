@@ -21,6 +21,42 @@ public class Ball
 		speed = 4;
 	}
 
+	public int getBallRadius() {
+		return this.RADIUS;
+	}
+
+	public int getX() {
+		return this.x;
+	}
+
+	public int getY() {
+		return this.y;
+	}
+
+	public int getDx() {
+		return this.dx;
+	}
+
+	public int getDy() {
+		return this.dy;
+	}
+
+	public Color getColor() {
+		return this.color;
+	}
+
+	public int getSpeed() {
+		return this.speed;
+	}
+
+	public int getSpeedUpDelay() {
+		return this.speedUpDelay;
+	}
+
+	public int getDelay() {
+		return this.delay;
+	}
+
 	public void move()
 	{
 		delay = (delay+1)%speedUpDelay;

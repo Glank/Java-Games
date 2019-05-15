@@ -15,6 +15,30 @@ public class Car extends Rectangle
 		this.color = color;
 	}
 
+	public int getSpeed() {
+		return this.speed;
+	}
+
+	public Color getColor() {
+		return this.color;
+	}
+
+	public int getx() {
+		return this.x;
+	}
+
+	public int gety() {
+		return this.y;
+	}
+
+	public int getW() {
+		return WIDTH;
+	}
+
+	public int getH() {
+		return HEIGHT;
+	}
+
 	public Car moveLeft()
 	{
 		return new Car(x-speed,y,speed,color);

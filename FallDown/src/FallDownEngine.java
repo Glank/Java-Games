@@ -15,10 +15,58 @@ public class FallDownEngine
 	private int brickDelay = 0;
 	private int speedDelay = 0;
 	private int points = -1;
+	
+	protected Vector<Brick> getBricks() {
+		return bricks;
+	}
+
+	protected void setBricks(Vector<Brick> bricks) {
+		this.bricks = bricks;
+	}
+
+	protected Ball getBall() {
+		return ball;
+	}
+
+	protected void setBall(Ball ball) {
+		this.ball = ball;
+	}
+
+	protected int getBrickSpeed() {
+		return brickSpeed;
+	}
+
+	protected void setBrickSpeed(int brickSpeed) {
+		this.brickSpeed = brickSpeed;
+	}
+
+	protected int getBrickDelay() {
+		return brickDelay;
+	}
+
+	protected void setBrickDelay(int brickDelay) {
+		this.brickDelay = brickDelay;
+	}
+
+	protected int getSpeedDelay() {
+		return speedDelay;
+	}
+
+	protected void setSpeedDelay(int speedDelay) {
+		this.speedDelay = speedDelay;
+	}
+
+	protected int getPoints() {
+		return points;
+	}
+
+	protected void setPoints(int points) {
+		this.points = points;
+	}
 
 	public FallDownEngine()
 	{
-		ball = new Ball(WIDTH/2, HEIGHT/2);
+		setBall(new Ball(WIDTH/2, HEIGHT/2));
 		createBrickLayer();
 	}
 
@@ -32,7 +80,7 @@ public class FallDownEngine
 				bricks.add(new Brick(i*Brick.WIDTH+Brick.WIDTH/2, HEIGHT+Brick.HEIGHT));
 			}
 		}
-		points++;
+		setPoints(getPoints()+1);
 	}
 
 	public void removeOldBricks()
@@ -60,43 +108,43 @@ public class FallDownEngine
 	{
 		for(int i = 0; i < bricks.size(); i++)
 		{
-			ball = bricks.get(i).affect(ball);
+			setBall( bricks.get(i).affect(ball) );
 		}
-		ball = ball.accelerate(0, GRAVITY);
-		if(ball.getLocation().getY() > HEIGHT)
-			ball = ball.setPosition((int)ball.getLocation().getX(), HEIGHT);
+		setBall(getBall().accelerate(0, GRAVITY));
+		if(getBall().getLocation().getY() > HEIGHT)
+			setBall( ball.setPosition((int)ball.getLocation().getX(), HEIGHT) );
 	}
 
 	public void moveLeft()
 	{
-		ball = ball.moveLeft();
+		setBall(getBall().moveLeft());
 		while(ball.getLocation().getX() < 0)
-			ball = ball.moveRight();
+			setBall( ball.moveRight() );
 	}
 
 	public void moveRight()
 	{
-		ball = ball.moveRight();
+		setBall(ball.moveRight());
 		while(ball.getLocation().getX() > WIDTH)
-			ball = ball.moveLeft();
+			setBall( ball.moveLeft() );
 	}
 
 	public void update()
 	{
-		if(ball.getLocation().getY() >= -Ball.RADIUS)
+		if(getBall().getLocation().getY() >= -Ball.RADIUS)
 		{
-			ball = ball.move();
+			setBall( ball.move() );
 			moveBricks();
 			removeOldBricks();
-			brickDelay = brickDelay+brickSpeed;
-			if(brickDelay > BRICK_LAYER_DELAY)
+			setBrickDelay(getBrickDelay()+getBrickSpeed());
+			if(getBrickDelay() > BRICK_LAYER_DELAY)
 			{
-				brickDelay = 0;
-				speedDelay++;
-				if(speedDelay > SPEED_UP_DELAY)
+				setBrickDelay(0);
+				setSpeedDelay(getSpeedDelay() + 1);
+				if(getSpeedDelay() > SPEED_UP_DELAY)
 				{
-					speedDelay = 0;
-					brickSpeed++;
+					setSpeedDelay(0);
+					setBrickSpeed(getBrickSpeed() + 1);
 				}
 				createBrickLayer();
 			}

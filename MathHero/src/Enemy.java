@@ -2,7 +2,7 @@ import java.awt.*;
 
 public abstract class Enemy
 {
-	protected double r,t,speed;
+	private double r,t,speed;
 	protected Color color = Color.BLACK;
 	protected int radius = 5;
 	private boolean dying1 = false;
@@ -18,6 +18,14 @@ public abstract class Enemy
 		t = Math.random()*Math.PI*2;
 	}
 
+	public double getR() {
+		return r;
+	}
+
+	public void setT(double d) {
+		t = d;
+	}
+
 	public int x()
 	{
 		return Util.MAX_R+(int)(Math.cos(t)*r+.5);
@@ -28,22 +36,22 @@ public abstract class Enemy
 		return Util.MAX_R+(int)(Math.sin(t)*r+.5);
 	}
 
-	private int arrowX1()
+	public int arrowX1()
 	{
 		return Util.MAX_R+(int)(Math.cos(t)*arrowR+.5);
 	}
 
-	private int arrowY1()
+	public int arrowY1()
 	{
 		return Util.MAX_R+(int)(Math.sin(t)*arrowR+.5);
 	}
 
-	private int arrowX2()
+	public int arrowX2()
 	{
 		return Util.MAX_R+(int)(Math.cos(t)*(arrowR-Util.ARROW_LENGTH)+.5);
 	}
 
-	private int arrowY2()
+	public int arrowY2()
 	{
 		return Util.MAX_R+(int)(Math.sin(t)*(arrowR-Util.ARROW_LENGTH)+.5);
 	}
@@ -51,6 +59,14 @@ public abstract class Enemy
 	public void die()
 	{
 		dying1 = true;
+	}
+
+	public boolean getDying1() {
+		return dying1;
+	}
+
+	public boolean getDying2() {
+		return dying2;
 	}
 
 	public boolean dead()
@@ -61,6 +77,10 @@ public abstract class Enemy
 	public boolean hitting()
 	{
 		return r == Util.PLAYER_RADIUS+radius && !dying1;
+	}
+
+	public void setDead(boolean b) {
+		dead = b;
 	}
 
 	public void update()

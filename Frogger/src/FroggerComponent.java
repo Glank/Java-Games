@@ -13,7 +13,7 @@ public class FroggerComponent extends JComponent implements KeyListener, Runnabl
     public static Vector<FroggerLevel> levels = new Vector();
     private int level = 0;
     //private JLabel l;
-    private int life=5;
+    private int life = 5;
     private int score = 0;
     private int highscore = readPreference();
     private static final String HIGHSCORE = "highscore1";
@@ -31,25 +31,70 @@ public class FroggerComponent extends JComponent implements KeyListener, Runnabl
         run.start();
     }
 
-    public void levelInit() {
+    public int getLevel() {
+      return this.level;
+    }
 
-         
+    public void setLevel(int level) {
+        this.level = level;
+      }
+
+    public int getLife() {
+      return this.life;
+    }
+
+    public void setLife(int life) {
+    	this.life = life;
+    }
+
+    public int getScore() {
+      return this.score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getHighscore() {
+      return this.highscore;
+    }
+
+    public void setHighscore(int highscore) {
+    	this.highscore = highscore;
+    }
+
+    public void level1Init() {
+
         levels.add(new FroggerLevel(
                 new int[]{1, 2, 1},
                 new String[]{"  YYYY         L  ", " BB      RR     ", "    RR    MM     "}));
+    }
+
+    public void level2Init() {
+
         levels.add(new FroggerLevel(
                 new int[]{1, 5, 1},
                 new String[]{"LLL       GGG      RRR", "RRR          MMM",
                     "RR    MM   LL    RR  RRR"}));
+    }
+
+    public void level3Init() {
 
         levels.add(new FroggerLevel(
                 new int[]{2, 1, 2, 1, 2},
                 new String[]{"RR         L  ", "BB  CCCCCC   RR     ", "    RR    MM     ",
                     "MMM     MMM     ", "RR      L     "}));
+    }
+
+    public void level4Init() {
+
         levels.add(new FroggerLevel(
                 new int[]{1, 2, 1, 3, 1},
                 new String[]{"LLL       MM      RRR    ", "RRR    GGGG    LL   MMM   ",
                     "RR    MM   LL    RR  RRR  ", "  LLLL      BBBB      MMM  ", "  MMMMM        LLLL     MMMM  "}));
+    }
+
+    public void level5Init() {
 
         levels.add(new FroggerLevel(
                 new int[]{1, 1, 1, 1, 1, 1, 1},
@@ -57,30 +102,54 @@ public class FroggerComponent extends JComponent implements KeyListener, Runnabl
                     "MMM   MMM     MMM    ", "RR     RR     RR     ",
                     "Y   Y   B   B   B   B   ", "MMM   MMM     MMM    L ",
                     "   BBB    BBB L    BBB"}));
+    }
+
+    public void level6Init() {
 
         levels.add(new FroggerLevel(
                 new int[]{1, 1, 2, 2, 3, 2, 1},
                 new String[]{"RR     LL     B   ", "LLL      BB   R    ",
                     "RRR      LL        ", "MMM        MM    ", "L          L      ",
                     "RR     L      M     ", "RRR    BL       "}));
+    }
+
+    public void level7Init() {
 
         levels.add(new FroggerLevel(
                 new int[]{1, 2, 3, 4, 5},
                 new String[]{"BB  L    RRR    M", "RR B  MMM     L    ",
                     "MM     LL     BB     ", "M      L      BB      ",
                     "LL            "}));
+    }
+
+    public void level8Init() {
+
         levels.add(new FroggerLevel(
                 new int[]{2, 3, 1, 2, 3, 2},
                 new String[]{"LLL       LLL       ", "   RRRR     RRRR     ",
                     "RR  BB     LL  MM   ", "LLL    BB     RR ", "MMMMM     RBRBR    LLLL    ", "    BBB   MMMM      LLLLL"}));
+    }
 
+    public void level9Init() {
 
         levels.add(new FroggerLevel(
                 new int[]{1, 3, 4, 3, 1, 2},
                 new String[]{"MMM   LL     RR      ", "BBB       LL    RR    ",
                     "BB        LL         ", "BBB       MM    MM   ", "MMM  LL  B    R  L B "
                 }));
+    }
 
+    public void levelInit() {
+
+    	level1Init();
+    	level2Init();
+    	level3Init();
+    	level4Init();
+    	level5Init();
+    	level6Init();
+    	level7Init();
+    	level8Init();
+    	level9Init();
     }
 
     public void run() {
@@ -174,10 +243,10 @@ public class FroggerComponent extends JComponent implements KeyListener, Runnabl
                 PlayFrogger.lab2.setText(hearts);
             }
         }
-//                
+//
 //                if(levels.get(level))
 //                {
-//                
+//
 //                }
         if (level == 0) {
 //    JLabel l = new JLabel();
@@ -204,7 +273,7 @@ public class FroggerComponent extends JComponent implements KeyListener, Runnabl
             PlayFrogger.lab1.setForeground(Color.RED);
             PlayFrogger.lab3.setLocation((369 - PlayFrogger.lab3.getWidth()), 56);
             PlayFrogger.lab3.setForeground(Color.BLUE);
-            
+
 
         } else if (level == 2) {
             checkHighscore();
@@ -284,7 +353,7 @@ public class FroggerComponent extends JComponent implements KeyListener, Runnabl
             PlayFrogger.lab3.setForeground(Color.BLUE);
 
         }
-          
+
     }
 
     public void keyPressed(KeyEvent ke) {
@@ -318,18 +387,16 @@ public class FroggerComponent extends JComponent implements KeyListener, Runnabl
 
     public void keyTyped(KeyEvent ke) {
     }
-    
+
     private void checkHighscore() {
         if (score > highscore) {
             highscore = score;
-
         }
 
         PlayFrogger.lab4.setText("HIGHSCORE: " + Integer.toString(highscore));
         PlayFrogger.lab4.setLocation((369 - PlayFrogger.lab4.getWidth()), 46);
         PlayFrogger.lab4.setForeground(Color.RED);
         savePreference(highscore);
-
     }
 
     public void savePreference(int highscore) {
