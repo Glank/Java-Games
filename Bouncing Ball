@@ -1,0 +1,155 @@
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Random;
+import javax.swing.*;
+
+public class BouncingBall extends JFrame
+{
+
+   private Random randomGenerator = new Random();
+
+   public int score=0;
+
+
+   private int x = 25 + randomGenerator.nextInt( 201 );
+   private int y = 25 + randomGenerator.nextInt( 201 );
+
+
+   private int rectX = 126;
+   private int rectWidth = 80;
+
+
+   private int deltaX = 2 + randomGenerator.nextInt( 6 );
+   private int deltaY = 2 + randomGenerator.nextInt( 6 );
+
+
+   private Timer ballTimer;
+
+
+   public BouncingBall()
+   {
+      create();
+   }
+
+   private void create()
+   {
+      addKeyListener(
+
+         new KeyAdapter()
+         {
+            public void keyPressed( KeyEvent e)
+            {
+               bouncingBallKeyPressed( e );
+            }
+
+        }
+
+        );
+
+
+      ballTimer = new Timer( 100,
+
+         new ActionListener()
+         {
+            public void actionPerformed( ActionEvent e)
+            {
+               ballTimerActionPerformed( e);
+            }
+
+        }
+
+      );
+
+      setTitle( "Bouncing Ball" );
+      setSize( 415, 430 );
+      setVisible( true );
+   }
+
+
+   public void paint( Graphics g)
+   {
+      super.paint( g );
+
+
+      g.setColor( Color.BLACK);
+      g.fillOval( x, y, 30, 30 );
+
+
+      g.setColor( Color.RED );
+      g.fillRect( rectX, 410, rectWidth, 10 );
+      g.setColor( Color.black );
+if(y > 410)
+g.drawString("DEAD",200,200);
+g.drawString("score = ",180,25);
+g.drawString(String.valueOf(score),235,25);
+
+   }
+
+   private void ballTimerActionPerformed( ActionEvent e)
+   {
+
+     x +=deltaX;
+      y +=deltaY;
+      if ( y <= 25 )
+      {
+         deltaY = 2 + randomGenerator.nextInt( 6 );
+      }
+      else if ( y +30  >= 410 && x >= rectX && x <= (rectX + 80) || (y
++30  >= 410 && x + 30 >= rectX && x + 30 <= (rectX + 80)))
+      { score+=10;
+         deltaY = (-2- randomGenerator.nextInt( 6 ));
+      }
+      else if ( y > 410 )
+      {
+         ballTimer.stop();
+      }
+
+      if ( x <= 5 )
+      {
+         deltaX = 2 + randomGenerator.nextInt( 6 );
+      }
+      else if ( x >= 405 )
+      {
+         deltaX = -2 - randomGenerator.nextInt( 6 );
+      }
+      else {
+
+       x += deltaX;
+       y +=  deltaY;
+
+      }
+
+      repaint();
+
+   }
+
+   private void bouncingBallKeyPressed( KeyEvent e)
+   {
+       int position = (400 - rectWidth);
+       if(e.getKeyCode()==KeyEvent.VK_ENTER)
+       {
+          ballTimer.start();
+          repaint();
+       }
+
+        else if(e.getKeyCode()==KeyEvent.VK_LEFT)
+       {
+if(rectX<415 && rectX >= 15) {
+           rectX-=15;
+           repaint();}
+       }
+
+       else if(e.getKeyCode()==KeyEvent.VK_RIGHT)
+       { if (rectX<335 && rectX >= 0)
+        {
+           rectX+=15;
+           repaint();}
+        }
+       }
+   public static void main( String[] args )
+   {
+      BouncingBall application = new BouncingBall();
+      application.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+
+   }
+}
