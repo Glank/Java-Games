@@ -1,15 +1,17 @@
-public class Subtraction extends Enemy
+package com.espol.mathhero2;
+public class Division extends Enemy
 {
 	protected String problem;
 	protected int solution;
 
-	public Subtraction()
+	public Division()
 	{
-		super(.4);
+		super(.3);
 		int n1 = (int)(Math.random()*9)+1;
 		int n2 = (int)(Math.random()*9)+1;
 		solution = n1;
-		problem = ""+(n1+n2)+"-"+n2;
+		problem = ""+(n1*n2)+"/"+n2;
+		radius = 8;
 		color = java.awt.Color.RED;
 	}
 

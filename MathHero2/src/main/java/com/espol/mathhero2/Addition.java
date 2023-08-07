@@ -1,16 +1,16 @@
-public class BigAddition extends Enemy
+package com.espol.mathhero2;
+public class Addition extends Enemy
 {
 	protected String problem;
 	protected int solution;
 
-	public BigAddition()
+	public Addition()
 	{
-		super(.3);
-		int n1 = (int)(Math.random()*90)+10;
-		int n2 = (int)(Math.random()*90)+10;
+		super(.6);
+		int n1 = (int)(Math.random()*9)+1;
+		int n2 = (int)(Math.random()*9)+1;
 		solution = n1+n2;
 		problem = ""+n1+"+"+n2;
-		radius = 15;
 	}
 
 	public String getProblem()

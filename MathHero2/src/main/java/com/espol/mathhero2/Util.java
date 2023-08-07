@@ -1,3 +1,4 @@
+package com.espol.mathhero2;
 public class Util
 {
 	public static final int MAX_R = 250;
