@@ -1,15 +1,17 @@
-public class Addition extends Enemy
+package com.espol.mathhero2;
+public class Multiplication extends Enemy
 {
 	protected String problem;
 	protected int solution;
 
-	public Addition()
+	public Multiplication()
 	{
-		super(.6);
+		super(.4);
 		int n1 = (int)(Math.random()*9)+1;
 		int n2 = (int)(Math.random()*9)+1;
-		solution = n1+n2;
-		problem = ""+n1+"+"+n2;
+		solution = n1*n2;
+		problem = ""+n1+"*"+n2;
+		radius = 8;
 	}
 
 	public String getProblem()
