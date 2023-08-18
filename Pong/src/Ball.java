@@ -7,9 +7,9 @@ public class Ball
 	private int x, y;
 	private int dx, dy;
 	private Color color;
-	private int speed;
-	private int speedUpDelay = 25;
-	private int delay = 0;
+	
+	private BallSpeedAttributes attributesSpeed;
+	
 
 	public Ball(Color c, int x, int y)
 	{
@@ -19,6 +19,7 @@ public class Ball
 		dx = (Math.random() < .5)?1:-1;
 		dy = (Math.random() < .5)?1:-1;
 		speed = 4;
+		attributesSpeed = new BallSpeedAttributes();
 	}
 
 	public void move()
