@@ -84,9 +84,9 @@ public class PongEnvironment
 			leftScore();
 
 		if(leftComputer)
-			left.moveTo((int)ball.getLocation().getY());
+			left.moveTo((int)ball.getY());
 		if(rightComputer)
-			right.moveTo((int)ball.getLocation().getY());
+			right.moveTo((int)ball.getY());
 
 	}
 
