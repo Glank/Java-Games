@@ -4,8 +4,8 @@ import java.util.*;
 public class FallDownEngine
 {
 	public static final double GRAVITY = .5;
-	public static final int WIDTH = 300;
-	public static final int HEIGHT = 300;
+	public static final int WIDTH_SCREEN = 300;
+	public static final int HEIGHT_SCREEN = 300;
 	public static final int BRICK_LAYER_DELAY = 100;
 	public static final int SPEED_UP_DELAY = 20;
 
@@ -18,18 +18,18 @@ public class FallDownEngine
 
 	public FallDownEngine()
 	{
-		ball = new Ball(WIDTH/2, HEIGHT/2);
+		ball = new Ball(WIDTH_SCREEN/2, HEIGHT_SCREEN/2);
 		createBrickLayer();
 	}
 
 	public void createBrickLayer()
 	{
-		int hole = (int)((WIDTH/Brick.WIDTH)*Math.random());
-		for(int i = 0; i < (WIDTH/Brick.WIDTH); i++)
+		int hole = (int)((WIDTH_SCREEN/Brick.WIDTH_SCREEN)*Math.random());
+		for(int i = 0; i < (WIDTH_SCREEN/Brick.WIDTH_SCREEN); i++)
 		{
 			if(i != hole)
 			{
-				bricks.add(new Brick(i*Brick.WIDTH+Brick.WIDTH/2, HEIGHT+Brick.HEIGHT));
+				bricks.add(new Brick(i*Brick.WIDTH_SCREEN+Brick.WIDTH_SCREEN/2, HEIGHT_SCREEN+Brick.HEIGHT_SCREEN));
 			}
 		}
 		points++;
@@ -63,8 +63,8 @@ public class FallDownEngine
 			ball = bricks.get(i).affect(ball);
 		}
 		ball = ball.accelerate(0, GRAVITY);
-		if(ball.getLocation().getY() > HEIGHT)
-			ball = ball.setPosition((int)ball.getLocation().getX(), HEIGHT);
+		if(ball.getLocation().getY() > HEIGHT_SCREEN)
+			ball = ball.setPosition((int)ball.getLocation().getX(), HEIGHT_SCREEN);
 	}
 
 	public void moveLeft()
@@ -77,7 +77,7 @@ public class FallDownEngine
 	public void moveRight()
 	{
 		ball = ball.moveRight();
-		while(ball.getLocation().getX() > WIDTH)
+		while(ball.getLocation().getX() > WIDTH_SCREEN)
 			ball = ball.moveLeft();
 	}
 
@@ -109,7 +109,7 @@ public class FallDownEngine
 		if(ball.getLocation().getY() < -Ball.RADIUS)
 		{
 			g.setColor(Color.BLUE);
-			g.drawString("You Lose", WIDTH/2-27, HEIGHT/2);
+			g.drawString("You Lose", WIDTH_SCREEN/2-27, HEIGHT_SCREEN/2);
 		}
 		else
 			ball.draw(g);
